@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Build directories
+build/
+dist/
+out/
+
+# Log files
+*.log
+
+# Environment files
+.env
+.env.local
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Compiled JavaScript files
+*.js
+*.jsx
+*.ts
+*.tsx
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Configuration files
+*.config.js
+*.config.ts
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+
+# Git and IDE directories
+.git/
+.vscode/
+.idea/
