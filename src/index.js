@@ -1,21 +1,13 @@
-import express from 'express';
-import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import express from "express";
+import mongoose from "mongoose";
+import { DB_NAME } from "./constant.js";
+import connectDB from "./db/index.js";
+import { config } from "dotenv";
 
-const app = express();
+dotenv.config({
+    path:'./env'
+})
 
-// Connect to MongoDB
-mongoose.connect('mongodb://Mongodb+srv://Ashish:AshMon128@cluster0.65mzykg.mongodb.net')
-    .then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.error('Connection error', err));
 
-// Simple route
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
-
-// Start the server
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
-
-//this is this is just the test code and the code could work could not ..
+connectDB()

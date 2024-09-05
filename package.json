@@ -6,10 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon -r dotenv/config --experimental-json-modules /path/to/index.js"
+    "start": "nodemon -r dotenv/config --experimental-json-modules ./src/index.js"
   },
   "keywords": [
-    "'"
+    " "
   ],
   "author": "ashish Chaurasiya",
   "license": "ISC",
@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "express": "^4.19.2",
-    "mongoose": "^8.5.2",
+    "mongodb": "^6.8.0",
+    "mongoose": "^8.6.1",
     "run": "^1.5.0"
   }
 }
