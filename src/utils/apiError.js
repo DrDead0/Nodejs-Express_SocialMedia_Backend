@@ -1,6 +1,6 @@
 //? this is for the custom api error message which will be sent to the frontend.
 //? this is will send error message which will be displayed to user by frontend.
- class ApiError extends Error{
+ class apiError extends Error{
     constructor(
         statusCode,
         message = "something went wrong",
@@ -24,4 +24,4 @@
     }
 }
 
-export{ApiError}
+export{apiError}

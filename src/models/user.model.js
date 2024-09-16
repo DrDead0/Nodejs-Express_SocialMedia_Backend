@@ -53,7 +53,7 @@ const userSchema = new Schema(
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next()  //? Condition to only run bcrypt when password changed not every time.
     
-    this.password = bcrypt.harsh(this.password,10)
+    this.password =await bcrypt.harsh(this.password,10)
     next();
 })
 
