@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import bcrypt from "bcryptjs/dist/bcrypt";
+
 import jsonwebtoken from "jsonwebtoken"; //? directly using is not possible , so we use hook of mongoose , mainly pre
 //? pre --> help work like middleware were it will run before going to production  
 const userSchema = new Schema(
