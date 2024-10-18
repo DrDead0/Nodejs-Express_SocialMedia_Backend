@@ -1,27 +1,23 @@
-//? this is for the custom api error message which will be sent to the frontend.
-//? this is will send error message which will be displayed to user by frontend.
- class ApiError extends Error{
+class ApiError extends Error {
     constructor(
         statusCode,
-        message = "something went wrong",
-        error =[],
-        stack =" "
-    ){
-        super(message)
-        this.statusCode = statusCode
-        this.data = null
-        this.message = message
-        this.success= false;
-        this.errors = errors
+        message = "Something went wrong",
+        errors = [], // Changed parameter name to 'errors'
+        stack = ""
+    ) {
+        super(message);
+        this.statusCode = statusCode;
+        this.data = null; // You might want to initialize this later based on your requirements
+        this.success = false; // Typically used to indicate failure
+        this.errors = errors; // Assign the errors array to this.errors
 
-        if(stack){
-            this.stack = stack
-
-        }else{
-            Error.captureStackTrace(this,this.constructor)
+        // Capture stack trace if no custom stack is provided
+        if (stack) {
+            this.stack = stack;
+        } else {
+            Error.captureStackTrace(this, this.constructor);
         }
-
     }
 }
 
-export{ApiError}
+export { ApiError };

@@ -1,4 +1,6 @@
 import mongoose, { Schema } from "mongoose";
+import bcrypt from 'bcrypt';
+// import bcrypt from 'bcryptjs'; // Use 'bcryptjs' if you installed this package
 
 import jsonwebtoken from "jsonwebtoken"; //? directly using is not possible , so we use hook of mongoose , mainly pre
 //? pre --> help work like middleware were it will run before going to production  
@@ -19,7 +21,7 @@ const userSchema = new Schema(
             lowercase: true,
             trim: true,
         },
-        fullName:{
+        fullname:{
             type: String,
             required: true,
             trim: true,
@@ -53,7 +55,7 @@ const userSchema = new Schema(
 userSchema.pre("save",async function(next){
     if(!this.isModified("password")) return next()  //? Condition to only run bcrypt when password changed not every time.
     
-    this.password =await bcrypt.harsh(this.password,10)
+    this.password =await bcrypt.hash(this.password,10)
     next();
 })
 
@@ -66,7 +68,7 @@ userSchema.methods.generateAccessToken = function(){
         _id: this._id,
         email: this.email,
         username: this.username,
-        fullName: this.fullName
+        fullname: this.fullname
     }, 
     process.env.ACCESS_TOKEN_SECRET,
     {
