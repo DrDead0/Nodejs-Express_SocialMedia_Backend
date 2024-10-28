@@ -14,6 +14,7 @@ const generateAccessAndRefreshToken = async(userId)=>{
        const refreshToken = userID.generateRefreshToken()
        userID.refreshToken=refreshToken
       await userID.save({validateBeforeSave: false})
+      return {accessToken,refreshToken}
     } catch(error) {
         throw new ApiError(405,"Something went wrong while generating Access Token and Refresh Token")
     }
@@ -94,6 +95,13 @@ const registerUser = asyncHandler(async(req,res)=>{
 
 const loginUser = asyncHandler(async(req,res)=>{
 
+    //todo is below
+    // req body -> data
+    //email/username
+    // find user 
+    // password check
+    // access token / refresh token
+    // send cookies
     const{email,password,username} = res.body;
     
     if(!email || !password){
@@ -111,6 +119,7 @@ const loginUser = asyncHandler(async(req,res)=>{
     if (!isPasswordValid){
         throw new ApiError(401," Invalid Password ")
     }    
-    const isPasswordValid =  await lUser.isPasswordCorrect(password)
+    const isPasswordValid =  await lUser.isPasswordCorrect(password) 
+    const {accessToken,refreshToken}= await generateAccessAndRefreshToken(lUser._id)
 })
 export{registerUser,loginUser}
