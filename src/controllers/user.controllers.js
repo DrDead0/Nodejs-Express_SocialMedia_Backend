@@ -4,6 +4,20 @@ import {user} from '../models/user.model.js'
 import {uploadOnCloudinary} from '../utils/cloudinary.js'
 import { apiResponse } from "../utils/apiResponse.js";
 import { ApiError } from '../utils/apiError.js';
+import mongoose from "mongoose";
+
+const generateAccessAndRefreshToken = async(userId)=>{
+
+    try {
+        const userID = await user.findById(userId)
+       const accessToken = userID.generateAccessToken()
+       const refreshToken = userID.generateRefreshToken()
+       userID.refreshToken=refreshToken
+      await userID.save({validateBeforeSave: false})
+    } catch(error) {
+        throw new ApiError(405,"Something went wrong while generating Access Token and Refresh Token")
+    }
+}
 
 const registerUser = asyncHandler(async(req,res)=>{
     // console.log("Incoming request files:", req.files); //?--> this to get information about the file upload
@@ -86,13 +100,17 @@ const loginUser = asyncHandler(async(req,res)=>{
         throw ApiError(404,"email or password is required.!")
     }
 
-    const User = await user.findOne({
+    const lUser = await user.findOne({
         $or:[{email},{username}]
     })
 
-    if(!User){
+    if(!lUser){
         throw new ApiError(400," User not found.!")
     }
-
+    
+    if (!isPasswordValid){
+        throw new ApiError(401," Invalid Password ")
+    }    
+    const isPasswordValid =  await lUser.isPasswordCorrect(password)
 })
 export{registerUser,loginUser}
