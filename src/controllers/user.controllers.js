@@ -1,5 +1,5 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { user } from "../models/user.model.js";
+import { User } from "../models/user.model.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import { ApiError } from "../utils/apiError.js";
@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 const generateAccessAndRefreshToken = async (userId) => {
     try {
-        const userID = await user.findById(userId);
+        const userID = await User.findById(userId);
         const accessToken = userID.generateAccessToken();
         const refreshToken = userID.generateRefreshToken();
         userID.refreshToken = refreshToken;
@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All fields are required");
     }
 
-    const existUser = await user.findOne({
+    const existUser = await User.findOne({
         $or: [{ username }, { email }],
     });
     if (existUser) {
@@ -47,7 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Avatar file is required");
     }
 
-    const newuser = await user.create({
+    const newuser = await User.create({
         fullname,
         avatar: avatar.url,
         coverImage: coverImage?.url || "",
@@ -56,22 +56,22 @@ const registerUser = asyncHandler(async (req, res) => {
         username: username.toLowerCase(),
     });
 
-    const createdUser = await user.findById(newuser._id).select("-password -refreshToken");
+    const createdUser = await User.findById(newuser._id).select("-password -refreshToken");
 
     if (!createdUser) {
         throw new ApiError(500, "Something went wrong while registering the user");
     }
-    return res.status(201).json(new apiResponse(200, createdUser, "User registered successfully"));
+    return res.status(201).json(new apiResponse(201, createdUser, "User registered successfully"));
 });
 
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
 
-    if (!email || !password) {
-        throw new ApiError(404, "Email or password is required.");
+    if (!((email || username) && password)) {
+        throw new ApiError(404, "Email or Username and Password are required.");
     }
 
-    const lUser = await user.findOne({
+    const lUser = await User.findOne({
         $or: [{ email }, { username }],
     });
 
@@ -85,7 +85,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(lUser._id);
-    const loggedInUser = await user.findById(lUser._id).select("-password -refreshToken");
+    const loggedInUser = await User.findById(lUser._id).select("-password -refreshToken");
 
     const options = {
         httpOnly: true,
@@ -103,7 +103,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const logoutUser = asyncHandler(async (req, res) => {
-    await user.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
         req.user._id,
         {
             $set: {
