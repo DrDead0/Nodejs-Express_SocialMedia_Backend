@@ -127,5 +127,14 @@ const logoutUser = asyncHandler(async (req, res) => {
         .clearCookie("refreshToken", options)
         .json(new apiResponse(200, {}, "User Successfully Logged Out"));
 });
-
+const refreshAccessToken = asyncHandler(async(req,res)=>{
+    const incomingAccessToken = req.cookie.refreshToken || req.body.refreshToken
+    if(!incomingAccessToken){
+        throw new ApiError(401,"Unauthorized Request ")
+    }
+    const decodedToken = jwt.verify(
+        incomingAccessToken,
+        process.env.REFRESH_TOKEN_SECRET
+    )
+})
 export { registerUser, loginUser, logoutUser };
