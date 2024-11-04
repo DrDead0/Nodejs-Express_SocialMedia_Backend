@@ -1,6 +1,6 @@
 # Social Media Backend
 
-A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB.
+A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB. Additional functionalities include password hashing with bcrypt, file uploads with multer, and pagination for video content using `mongooseAggregatePaginate`.
 
 ## Features
 
@@ -19,6 +19,8 @@ A basic social media backend developed with Node.js and Express, providing essen
 | Express    | Web framework for routing| [Express Docs](https://expressjs.com/)                     |
 | MongoDB    | Database for data storage| [MongoDB Docs](https://www.mongodb.com/docs/)              |
 | JWT        | Authentication tokens    | [JWT Introduction](https://jwt.io/introduction/)           |
+| Bcrypt     | Password hashing         | [Bcrypt Docs](https://github.com/kelektiv/node.bcrypt.js) |
+| Multer     | File upload handling     | [Multer Docs](https://www.npmjs.com/package/multer)       |
 | Cloudinary | Media storage for uploads| [Cloudinary Docs](https://cloudinary.com/documentation)    |
 
 ## Getting Started
@@ -33,7 +35,7 @@ A basic social media backend developed with Node.js and Express, providing essen
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/DrDead0/Task-Manager_Chrome-Extension.git
+    git clone https://github.com/DrDead0/Nodejs-Express_SocialMedia_Backend.git
     cd social-media-backend
     ```
 
@@ -92,6 +94,8 @@ To use this backend, connect it to a frontend framework (e.g., React, Vue, or An
 - **JSON Web Token (JWT)**: Used for secure authentication in this project. Learn more about it [here](https://jwt.io/introduction/).
 - **MongoDB Atlas**: For setting up a cloud MongoDB database, refer to [MongoDB Atlas Documentation](https://www.mongodb.com/docs/atlas/).
 - **Express Middleware**: Explore how to handle requests and responses with middleware in the [Express Documentation](https://expressjs.com/en/guide/using-middleware.html).
+- **Bcrypt**: Learn about password hashing with [Bcrypt](https://github.com/kelektiv/node.bcrypt.js).
+- **Multer**: Find out how to handle file uploads with [Multer](https://www.npmjs.com/package/multer).
 - **Cloudinary**: Manage and optimize media uploads with [Cloudinary](https://cloudinary.com/documentation).
 
 ## Contributing
