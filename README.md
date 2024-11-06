@@ -103,4 +103,4 @@ Contributions are welcome! If you’d like to suggest features, improvements, or
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/DrDead0/Nodejs-Express_SocialMedia_Backend/blob/main/LICENSE).
+This project is licensed under the [MIT License](hhttps://github.com/DrDead0/Nodejs-Express_SocialMedia_Backend?tab=MIT-1-ov-file).
