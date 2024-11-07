@@ -15,7 +15,10 @@ userRouter.route("/register").post(
 
 userRouter.route("/login").post(loginUser);
 
+
+
 // Secure Routes made by ashish chaurasiya hehehehe
 userRouter.route("/logout").post(verifyJWT, logoutUser);
-userRouter.route("refresh-Token").post(refreshAccessToken)
+userRouter.route("/refresh-Token").post(refreshAccessToken);
+
 export default userRouter;
