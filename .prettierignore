@@ -5,7 +5,6 @@ node_modules/
 build/
 dist/
 out/
-
 # Log files
 *.log
 

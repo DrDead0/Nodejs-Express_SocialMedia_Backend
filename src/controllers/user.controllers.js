@@ -4,7 +4,7 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { apiResponse } from "../utils/apiResponse.js";
 import { ApiError } from "../utils/apiError.js";
 import jwt from "jsonwebtoken";
-
+import{ Subscription } from "../models/subscription.model.js"
 const generateAccessAndRefreshToken = async (userId) => {
     try {
         const user = await User.findById(userId);
@@ -316,7 +316,36 @@ const updateCoverImage = asyncHandler(async (req, res) => {
         .status(200)
         .json(new apiResponse(200, user, "Cover image updated successfully"));
 });
+const getUserChannelProfile = asyncHandler(async (req, res) => {
+    const {username} = req.params;
 
+    if (!username){
+        throw new ApiError(400,"Username is missing")
+    }
+    // User.findById({username})
+    const channel = await User.aggregate([{
+        $match:{
+            username:username?.toLowerCase()
+        }
+    },
+    {
+        $lookup:{
+            from:"subscription",
+            localField: "_id",
+            foreignField: "channel",
+            as:"subscriber"
+        }
+    },
+    {
+        $lookup:{
+            form:"subscription",
+            localField:"_id",
+            foreignField:"subscriber",
+            as:"SubscribedTo"
+        }
+    }
+])
+});
 export {
     registerUser,
     loginUser,
@@ -327,4 +356,5 @@ export {
     updateDetails,
     updateAvatar,
     updateCoverImage,
+    getUserChannelProfile
 };
