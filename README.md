@@ -77,7 +77,6 @@ A basic social media backend developed with Node.js and Express, providing essen
 | `/user/:id/follow`    | POST        | Follow another user                |
 | `/user/:id/unfollow`  | POST        | Unfollow a user                    |
 | `/post`               | POST        | Create a new post                  |
-| `/post/:id`           | PUT         | Edit a post                        |
 | `/post/:id`           | DELETE      | Delete a post                      |
 | `/post/:id/like`      | PUT         | Like a post                        |
 | `/video`              | POST        | Upload a new video                 |
