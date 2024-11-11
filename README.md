@@ -2,104 +2,172 @@
 
 A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB. Additional functionalities include password hashing with bcrypt, file uploads with multer, and pagination for video content using `mongooseAggregatePaginate`.
 
+## Technologies Used
+
+| **Technology**         | **Description**                                                               |
+|------------------------|-------------------------------------------------------------------------------|
+| **Node.js**            | JavaScript runtime used for server-side applications ([Node.js Official Site](https://nodejs.org/)). |
+| **Express.js**         | A web framework for creating RESTful APIs ([Express.js Documentation](https://expressjs.com/)). |
+| **MongoDB**            | NoSQL database for storing user data and other platform-related information ([MongoDB Official](https://www.mongodb.com/)). |
+| **Mongoose**           | ODM for MongoDB, used to interact with the database easily ([Mongoose Documentation](https://mongoosejs.com/)). |
+| **JWT**                | JSON Web Tokens for secure user authentication ([JWT Documentation](https://jwt.io)). |
+| **Bcrypt.js**          | Library used to hash and verify passwords ([Bcrypt.js Documentation](https://www.npmjs.com/package/bcryptjs)). |
+| **Multer**             | Middleware for handling multipart file uploads (such as images) ([Multer Documentation](https://www.npmjs.com/package/multer)). |
+| **Cloudinary**         | Cloud storage service for storing profile images and cover photos ([Cloudinary Official](https://cloudinary.com)). |
+
+---
+
 ## Features
 
-| Feature               | Description                                                                 |
-|-----------------------|-----------------------------------------------------------------------------|
-| **User Authentication** | Register, login, logout, and refresh tokens for secure sessions.            |
-| **Subscriptions**     | Users can follow and unfollow other users.                                  |
-| **Content Management** | Users can create, edit, and delete posts and videos.                        |
-| **Likes**             | Like posts and videos to increase engagement.                               |
+| **Feature**            | **Description**                                                                 |
+|------------------------|---------------------------------------------------------------------------------|
+| **User Registration**   | Allows users to register using email/username and a secure password. |
+| **User Authentication** | Authenticates users using JWT tokens to allow secure access to resources. |
+| **Password Management** | Users can change their password securely using hashed password storage. |
+| **Profile Management**  | Users can update their profile details, including avatar and cover photo. |
+| **Subscription**        | Allows users to subscribe to channels and manage their subscriptions. |
+| **Watch History**       | Tracks the videos a user has watched and stores them in their history. |
 
-## Tech Stack
+---
 
-| Technology | Purpose                  | Documentation                                              |
-|------------|--------------------------|------------------------------------------------------------|
-| Node.js    | Runtime environment      | [Node.js Docs](https://nodejs.org/en/docs/)                |
-| Express    | Web framework for routing| [Express Docs](https://expressjs.com/)                     |
-| MongoDB    | Database for data storage| [MongoDB Docs](https://www.mongodb.com/docs/)              |
-| JWT        | Authentication tokens    | [JWT Introduction](https://jwt.io/introduction/)           |
-| Bcrypt     | Password hashing         | [Bcrypt Docs](https://github.com/kelektiv/node.bcrypt.js) |
-| Multer     | File upload handling     | [Multer Docs](https://www.npmjs.com/package/multer)       |
-| Cloudinary | Media storage for uploads| [Cloudinary Docs](https://cloudinary.com/documentation)    |
-
-## Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) and npm installed on your system.
-- [MongoDB](https://www.mongodb.com/) set up locally or via MongoDB Atlas.
-- [Cloudinary](https://cloudinary.com/) account for managing media storage.
-
-### Installation
+## Installation
 
 1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/DrDead0/Nodejs-Express_SocialMedia_Backend.git
-    cd social-media-backend
-    ```
 
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+   ```bash
+   git clone https://github.com/your-username/social-media-backend.git
+   ```
 
-3. **Set up environment variables**:
+2. **Navigate into the project directory**:
 
-    Create a `.env` file in the root directory and add:
-    ```
-    PORT=5230
-    MONGODB_URI= your_mongodb_connection_string
-    CORS_ORIGIN= your_cors_origin
-    ACCESS_TOKEN_SECRET= your_access_token_secret
-    ACCESS_TOKEN_EXPIRY= access_token_expiry (e.g., 1d)
-    REFRESH_TOKEN_SECRET= your_refresh_token_secret
-    REFRESH_TOKEN_EXPIRY= refresh_token_expiry (e.g., 7d)
-    CLOUDINARY_NAME= your_cloudinary_name
-    CLOUDINARY_API_KEY= your_cloudinary_api_key
-    CLOUDINARY_API_SECRET= your_cloudinary_api_secret
-    ```
+   ```bash
+   cd social-media-backend
+   ```
 
-4. **Run the server**:
-    ```bash
-    npm run start
-    ```
-    The server will be running at `http://localhost:5230`.
+3. **Install dependencies**:
 
-## API Endpoints
+   ```bash
+   npm install
+   ```
 
-| Endpoint              | HTTP Method | Description                        |
-|-----------------------|-------------|------------------------------------|
-| `/user/register`      | POST        | Register a new user                |
-| `/user/login`         | POST        | Log in an existing user            |
-| `/user/logout`        | POST        | Log out the user                   |
-| `/user/refresh-token` | POST        | Refresh JWT token                  |
-| `/user/:id/follow`    | POST        | Follow another user                |
-| `/user/:id/unfollow`  | POST        | Unfollow a user                    |
-| `/post`               | POST        | Create a new post                  |
-| `/post/:id`           | DELETE      | Delete a post                      |
-| `/post/:id/like`      | PUT         | Like a post                        |
-| `/video`              | POST        | Upload a new video                 |
-| `/video/:id`          | PUT         | Edit a video                       |
-| `/video/:id`          | DELETE      | Delete a video                     |
-| `/video/:id/like`     | PUT         | Like a video                       |
+4. **Create a `.env` file** for your environment variables:
+
+   ```plaintext
+   MONGODB_URI=<Your MongoDB URI>
+   JWT_SECRET=<Your JWT Secret Key>
+   REFRESH_TOKEN_SECRET=<Your Refresh Token Secret>
+   CLOUDINARY_CLOUD_NAME=<Your Cloudinary Cloud Name>
+   CLOUDINARY_API_KEY=<Your Cloudinary API Key>
+   CLOUDINARY_API_SECRET=<Your Cloudinary API Secret>
+   ```
+
+5. **Start the server**:
+
+   ```bash
+   npm start
+   ```
+
+---
 
 ## Usage
 
-To use this backend, connect it to a frontend framework (e.g., React, Vue, or Angular) to build a fully functional social media application. All endpoints are RESTful, allowing you to integrate this backend seamlessly with various frontend libraries.
+### Frontend Integration
+
+To use this backend, connect it to a frontend framework (e.g., React, Vue, or Angular) to build a fully functional social media application. All endpoints are **RESTful**, allowing you to seamlessly integrate this backend with various frontend libraries. Below are a few steps to help you connect the backend with the frontend:
+
+1. **Set up the Frontend Application**: 
+   - Use a frontend framework like **React** or **Vue** to create the UI for your social media platform.
+   - Ensure you handle the user interface for registration, login, and profile management.
+
+2. **Make HTTP Requests**: 
+   - The frontend will interact with the backend by making HTTP requests to the endpoints exposed by this backend.
+   - Use libraries like `axios` or `fetch` to send requests and handle responses.
+
+3. **Authentication**:
+   - When the user logs in, the frontend will send a POST request to the `/users/login` endpoint with the email and password.
+   - The backend will return a JWT token, which the frontend can store (typically in localStorage or a cookie).
+   - For all subsequent requests, the frontend should include this JWT token in the `Authorization` header to authenticate requests.
+
+4. **Profile Management**:
+   - The frontend can allow users to upload avatars and update their details by making PUT requests to endpoints like `/users/update-avatar` or `/users/update-details`.
+
+5. **Subscription and Watch History**:
+   - Users can subscribe to channels and view their watch history by interacting with the appropriate endpoints, such as `/users/watch-history` or `/users/:username/channel-profile`.
+
+---
+
+## Endpoints
+
+### Authentication
+
+| **Method** | **Route**              | **Description**                            |
+|------------|------------------------|--------------------------------------------|
+| POST       | `/users/register`       | Registers a new user with details.         |
+| POST       | `/users/login`          | Logs in a user and returns a JWT token.    |
+| POST       | `/users/logout`         | Logs out the user by clearing the session. |
+| POST       | `/users/refresh-token`  | Refreshes the access token using the refresh token. |
+
+### User Management
+
+| **Method** | **Route**                      | **Description**                            |
+|------------|--------------------------------|--------------------------------------------|
+| GET        | `/users/me`                    | Retrieves the profile of the current user. |
+| PUT        | `/users/update-details`        | Updates user details such as name and email. |
+| PUT        | `/users/change-password`       | Allows the user to change their password. |
+| PUT        | `/users/update-avatar`         | Uploads and updates the user’s avatar.     |
+| PUT        | `/users/update-cover-image`    | Uploads and updates the user’s cover image. |
+
+### Channel & Subscription Management
+
+| **Method** | **Route**                           | **Description**                                    |
+|------------|-------------------------------------|----------------------------------------------------|
+| GET        | `/users/:username/channel-profile` | Fetches the user’s channel profile.               |
+| GET        | `/users/watch-history`             | Retrieves the user’s watch history.               |
+
+---
+
+## Contribution
+
+Feel free to contribute to this project by creating **issues**, submitting **pull requests**, or suggesting **improvements**. If you would like to contribute, please:
+
+1. **Fork the repository** and clone it to your local machine.
+2. **Create a new branch** for your changes:
+   ```bash
+   git checkout -b new-feature
+   ```
+3. **Make your changes** and commit them:
+   ```bash
+   git commit -m "Added new feature"
+   ```
+4. **Push to your fork**:
+   ```bash
+   git push origin new-feature
+   ```
+5. **Open a pull request** for review.
+
+---
+
+## Error Handling
+
+| **Error Code** | **Description**                                          |
+|-----------------|----------------------------------------------------------|
+| `400`           | **Bad Request** - Invalid or missing data.              |
+| `401`           | **Unauthorized** - Invalid credentials or authentication. |
+| `404`           | **Not Found** - Resource not found (e.g., user, video). |
+| `500`           | **Internal Server Error** - Unexpected server error.   |
+
+---
 
 ## Additional Resources
 
-- **JSON Web Token (JWT)**: Used for secure authentication in this project. Learn more about it [here](https://jwt.io/introduction/).
-- **MongoDB Atlas**: For setting up a cloud MongoDB database, refer to [MongoDB Atlas Documentation](https://www.mongodb.com/docs/atlas/).
-- **Express Middleware**: Explore how to handle requests and responses with middleware in the [Express Documentation](https://expressjs.com/en/guide/using-middleware.html).
-- **Bcrypt**: Learn about password hashing with [Bcrypt](https://github.com/kelektiv/node.bcrypt.js).
-- **Multer**: Find out how to handle file uploads with [Multer](https://www.npmjs.com/package/multer).
-- **Cloudinary**: Manage and optimize media uploads with [Cloudinary](https://cloudinary.com/documentation).
+- **MongoDB** - A NoSQL database for easy scalability: [MongoDB Official](https://www.mongodb.com/)
+- **JWT (JSON Web Tokens)** - For secure authentication: [JWT.io](https://jwt.io)
+- **Cloudinary** - Cloud storage service for media: [Cloudinary](https://cloudinary.com/)
+- **Express.js** - Web framework for building RESTful APIs: [Express.js Documentation](https://expressjs.com/)
+- **Bcrypt.js** - Library for securely hashing passwords: [Bcrypt.js Documentation](https://www.npmjs.com/package/bcryptjs)
 
-## Contributing
-Contributions are welcome! If you’d like to suggest features, improvements, or fixes, feel free to fork the repository, create a branch, and submit a pull request.
+---
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/DrDead0/Nodejs-Express_SocialMedia_Backend?tab=MIT-1-ov-file).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
