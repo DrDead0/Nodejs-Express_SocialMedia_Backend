@@ -1,6 +1,7 @@
 # Social Media Backend
 
-A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB. Additional functionalities include password hashing with bcrypt, file uploads with multer, and pagination for video content using `mongooseAggregatePaginate`.
+A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB. Additional functionalities include password hashing with bcrypt, file uploads with multer, mongoDB aggregation pipeline and pagination for video content using `mongooseAggregatePaginate`.
+
 
 ## Technologies Used
 
@@ -15,7 +16,6 @@ A basic social media backend developed with Node.js and Express, providing essen
 | **Multer**             | Middleware for handling multipart file uploads (such as images) ([Multer Documentation](https://www.npmjs.com/package/multer)). |
 | **Cloudinary**         | Cloud storage service for storing profile images and cover photos ([Cloudinary Official](https://cloudinary.com)). |
 
----
 
 ## Features
 
@@ -28,7 +28,7 @@ A basic social media backend developed with Node.js and Express, providing essen
 | **Subscription**        | Allows users to subscribe to channels and manage their subscriptions. |
 | **Watch History**       | Tracks the videos a user has watched and stores them in their history. |
 
----
+
 
 ## Installation
 
@@ -67,7 +67,7 @@ A basic social media backend developed with Node.js and Express, providing essen
    npm start
    ```
 
----
+
 
 ## Usage
 
@@ -94,7 +94,6 @@ To use this backend, connect it to a frontend framework (e.g., React, Vue, or An
 5. **Subscription and Watch History**:
    - Users can subscribe to channels and view their watch history by interacting with the appropriate endpoints, such as `/users/watch-history` or `/users/:username/channel-profile`.
 
----
 
 ## Endpoints
 
@@ -107,6 +106,7 @@ To use this backend, connect it to a frontend framework (e.g., React, Vue, or An
 | POST       | `/users/logout`         | Logs out the user by clearing the session. |
 | POST       | `/users/refresh-token`  | Refreshes the access token using the refresh token. |
 
+
 ### User Management
 
 | **Method** | **Route**                      | **Description**                            |
@@ -117,6 +117,7 @@ To use this backend, connect it to a frontend framework (e.g., React, Vue, or An
 | PUT        | `/users/update-avatar`         | Uploads and updates the user’s avatar.     |
 | PUT        | `/users/update-cover-image`    | Uploads and updates the user’s cover image. |
 
+
 ### Channel & Subscription Management
 
 | **Method** | **Route**                           | **Description**                                    |
@@ -124,28 +125,6 @@ To use this backend, connect it to a frontend framework (e.g., React, Vue, or An
 | GET        | `/users/:username/channel-profile` | Fetches the user’s channel profile.               |
 | GET        | `/users/watch-history`             | Retrieves the user’s watch history.               |
 
----
-
-## Contribution
-
-Feel free to contribute to this project by creating **issues**, submitting **pull requests**, or suggesting **improvements**. If you would like to contribute, please:
-
-1. **Fork the repository** and clone it to your local machine.
-2. **Create a new branch** for your changes:
-   ```bash
-   git checkout -b new-feature
-   ```
-3. **Make your changes** and commit them:
-   ```bash
-   git commit -m "Added new feature"
-   ```
-4. **Push to your fork**:
-   ```bash
-   git push origin new-feature
-   ```
-5. **Open a pull request** for review.
-
----
 
 ## Error Handling
 
@@ -156,17 +135,38 @@ Feel free to contribute to this project by creating **issues**, submitting **pul
 | `404`           | **Not Found** - Resource not found (e.g., user, video). |
 | `500`           | **Internal Server Error** - Unexpected server error.   |
 
----
 
 ## Additional Resources
 
-- **MongoDB** - A NoSQL database for easy scalability: [MongoDB Official](https://www.mongodb.com/)
-- **JWT (JSON Web Tokens)** - For secure authentication: [JWT.io](https://jwt.io)
-- **Cloudinary** - Cloud storage service for media: [Cloudinary](https://cloudinary.com/)
-- **Express.js** - Web framework for building RESTful APIs: [Express.js Documentation](https://expressjs.com/)
-- **Bcrypt.js** - Library for securely hashing passwords: [Bcrypt.js Documentation](https://www.npmjs.com/package/bcryptjs)
+   - **MongoDB** - A NoSQL database for easy scalability: [MongoDB Official](https://www.mongodb.com/)
+   - **JWT (JSON Web Tokens)** - For secure authentication: [JWT.io](https://jwt.io)
+   - **Cloudinary** - Cloud storage service for media: [Cloudinary](https://cloudinary.com/)
+   - **Express.js** - Web framework for building RESTful APIs: [Express.js Documentation](https://expressjs.com/)
+   - **Bcrypt.js** - Library for securely hashing passwords: [Bcrypt.js Documentation](https://www.npmjs.com/package/bcryptjs)
 
----
+## Contribution
+
+Feel free to contribute to this project by creating **issues**, submitting **pull requests**, or suggesting **improvements**. If you would like to contribute, please:
+
+   1. **Fork the repository** and clone it to your local machine.
+      
+   2. **Create a new branch** for your changes:
+      ```bash
+      git checkout -b new-feature
+      ```
+   3. **Make your changes** and commit them:
+      ```bash
+      git commit -m "Added new feature"
+      ```
+   4. **Push to your fork**:
+      ```bash
+      git push origin new-feature
+      ```
+      5 . **Open a pull request** for review.
+
+
+
+
 
 ## License
 
