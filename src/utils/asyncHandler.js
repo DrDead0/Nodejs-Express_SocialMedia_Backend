@@ -11,17 +11,8 @@ const asyncHandler = (requestHandler)=>{
 
 }
 
-//! the above code is simple and easy to execute     
-
-
-
-
-
-
-
-
+//! the above code is simple and easy to execute.
 export{asyncHandler}
-
 //? the below code is for try and catch method 
 // const asyncHandler = (func)=> async (req,res,next)=>{    //* this is for try and catch type 
 //     try{
