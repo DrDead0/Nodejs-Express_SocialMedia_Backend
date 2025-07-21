@@ -1,6 +1,6 @@
 # Social Media Backend
 
-A basic social media backend developed with Node.js and Express, providing essential functionalities for building a social media application. Key features include user authentication, subscriptions, and post and video interactions, all stored and managed in MongoDB. Additional functionalities include password hashing with bcrypt, file uploads with multer, mongoDB aggregation pipeline and pagination for video content using `mongooseAggregatePaginate`.
+RESTful backend using Node.js (Express), JWT authentication, bcrypt for credential hashing, Multer for streaming multipart uploads, Mongoose for ODM over MongoDB, S3-compatible media storage abstraction, and indexed cursor-based video pagination with optimized query performance.
 
 
 ## Technologies Used
